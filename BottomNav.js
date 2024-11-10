@@ -2,20 +2,30 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Mahasiswa from './Mahasiswa';
+import Profile from './App';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faGear, faUser, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+import WebView from 'react-native-webview';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
 
 function HomeScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
+      <Profile />
   );
 }
 
-function SettingsScreen() {
+function DataMahasiswaScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
+    <Mahasiswa/>
+  );
+}
+function WebScreen() {
+  return (
+    <WebView
+    source={{ uri: 'https://github.com/Edra13' }}
+  />
   );
 }
 
@@ -25,8 +35,28 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Profile" component={HomeScreen} 
+        options={{ 
+          headerShown: false, 
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesomeIcon icon={faUser} size={20} color={color} />
+          ),
+        }} 
+        />
+        <Tab.Screen name="Data Mahasiswa" component={DataMahasiswaScreen}  options={{ 
+          headerShown: true, 
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesomeIcon icon={faUserGraduate} size={20} color={color} />
+          ),
+        }}
+        />
+        <Tab.Screen name="GitHub" component={WebScreen}  options={{ 
+          headerShown: true, 
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesomeIcon icon={faGithub} size={20} color={color} />
+          ),
+        }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
