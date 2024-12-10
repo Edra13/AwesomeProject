@@ -4,12 +4,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from './App';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faGear, faUser, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faPlusCircle, faUser, faUserGraduate, faUserPen } from '@fortawesome/free-solid-svg-icons';
 import WebView from 'react-native-webview';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import Createdata from './Createdata';
 import Listdata from './Listdata';
-
+import Editdata from './Editdata';
 
 function HomeScreen() {
   return (
@@ -22,11 +22,9 @@ function DataMahasiswaScreen() {
     <Listdata/>
   );
 }
-function WebScreen() {
+function EditScreen() {
   return (
-    <WebView
-    source={{ uri: 'https://github.com/Edra13' }}
-  />
+    <Editdata/>
   );
 }
 
@@ -40,21 +38,21 @@ export default function App() {
         options={{ 
           headerShown: true, 
           tabBarIcon: ({ color, size }) => (
-            <FontAwesomeIcon icon={faUser} size={20} color={color} />
+            <FontAwesomeIcon icon={faPlusCircle} size={20} color={color} />
           ),
         }} 
         />
-        <Tab.Screen name="Mahasiswa" component={DataMahasiswaScreen}  options={{ 
+        <Tab.Screen name="Data Mahasiswa" component={DataMahasiswaScreen}  options={{ 
           headerShown: true, 
           tabBarIcon: ({ color, size }) => (
             <FontAwesomeIcon icon={faUserGraduate} size={20} color={color} />
           ),
         }}
         />
-        <Tab.Screen name="GitHub" component={WebScreen}  options={{ 
+        <Tab.Screen name="Edit Data" component={EditScreen}  options={{ 
           headerShown: true, 
           tabBarIcon: ({ color, size }) => (
-            <FontAwesomeIcon icon={faGithub} size={20} color={color} />
+            <FontAwesomeIcon icon={faUserPen} size={20} color={color} />
           ),
         }}
         />
